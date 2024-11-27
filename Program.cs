@@ -4,37 +4,55 @@ using DiscordRPC.Logging;
 using System;
 using System.Diagnostics;
 using System.Threading;
+using System.Linq;
 
 #nullable enable
-namespace template {
+namespace ResolveDRPC {
     internal class Program {
         private static DiscordRpcClient client;
+        private static bool bgMode = false;
 
-        private static void Main(string[] args) {
-            bool flag = false;
-            string processName = "Resolve";
+       private static void Main(string[] args) {
+           if (args.Contains("--help") || args.Contains("-h")) {
+               ShowHelp();
+               return;
+           }
 
-            if (Process.GetProcessesByName(processName).Length == 0) {
-                Console.WriteLine(processName + " is Not Running...");
-                Thread.Sleep(500);
-            } else {
-                Console.WriteLine(processName + " is Running...");
-                Thread.Sleep(500);
-                flag = true;
-            }
+           if (args.Contains("--background") || args.Contains("-b")) {
+               bgMode = true;
+           }
 
-            if (flag) {
-                Console.WriteLine("DRPC is Starting...");
-                Thread.Sleep(1000);
-                Program.GetTitleAndUpdate();
-                Console.ReadLine();
-            } else {
-                Console.WriteLine("DRPC failed to start...");
-                Thread.Sleep(500);
-                Console.WriteLine("Exiting...");
-                Thread.Sleep(500);
-            }
-        }
+           bool flag = false;
+           string processName = "Resolve";
+
+           if (Process.GetProcessesByName(processName).Length == 0) {
+               Console.WriteLine(processName + " is Not Running...");
+               Thread.Sleep(500);
+           } else {
+               Console.WriteLine(processName + " is Running...");
+               Thread.Sleep(500);
+               flag = true;
+           }
+
+           if (flag) {
+               Console.WriteLine("DRPC is Starting...");
+               Thread.Sleep(1000);
+               Program.GetTitleAndUpdate();
+           } else {
+               Console.WriteLine("DRPC failed to start...");
+               Thread.Sleep(500);
+               Console.WriteLine("Exiting...");
+               Thread.Sleep(500);
+           }
+       }
+
+       private static void ShowHelp() {
+           Console.WriteLine("Resolve Discord Rich Presence (DRPC) CLI");
+           Console.WriteLine("Usage: ResolveDRPC [options]");
+           Console.WriteLine("\nOptions:");
+           Console.WriteLine("  -h, --help      Show this help message");
+           Console.WriteLine("  -b, --background  Run in background mode");
+       }
 
         public static void Initialize() {
             Program.client = new DiscordRpcClient("1131090005872349215");
@@ -42,13 +60,17 @@ namespace template {
 
             Program.client.OnReady += (OnReadyEvent)((sender, e) => {
                 Console.WriteLine("DRPC Connected to user {0}", (object)e.User.Username);
-                Thread.Sleep(500);
-                Console.WriteLine("________________________________________");
-                Thread.Sleep(500);
-                Console.WriteLine("   Keep this window running");
-                Console.WriteLine(new string('\n', 7));
-                Thread.Sleep(500);
-                Console.WriteLine("Ctrl + C to close this program");
+                
+                if (!bgMode) {
+                    Thread.Sleep(500);
+                    Console.WriteLine("________________________________________");
+                    Thread.Sleep(500);
+                    Console.WriteLine("   Keep this window running");
+                    Console.WriteLine(new string('\n', 7));
+                    Thread.Sleep(500);
+                    Console.WriteLine("Ctrl + C to close this program");
+                    Console.ReadLine();
+                }
             });
 
             Program.client.Initialize();
