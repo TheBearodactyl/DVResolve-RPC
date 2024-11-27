@@ -1,4 +1,6 @@
-# [DVResolve-RPC](https://github.com/v4ish/rpc)
+# Code reverse engineered from [here](https://github.com/v4ish/DVResolve-RPC)
+# NOT MY ORIGINAL PROGRAM
+
 Discord Rich presence for [DaVinci Resolve](https://www.blackmagicdesign.com/products/davinciresolve/) written in c#
 
 ## Features
@@ -10,9 +12,9 @@ Discord Rich presence for [DaVinci Resolve](https://www.blackmagicdesign.com/pro
 
 ## Screenshots
 
-<img src="https://github.com/v4ish/RPC/blob/main/Screenshots/davinci.png" alt="logo" width="300"/>
+<img src="https://github.com/thebearodactyl/RPC/blob/main/Screenshots/davinci.png" alt="logo" width="300"/>
 
-<img src="https://github.com/v4ish/RPC/blob/main/Screenshots/davinci2.png" alt="logo" width="300"/>
+<img src="https://github.com/thebearodactyl/RPC/blob/main/Screenshots/davinci2.png" alt="logo" width="300"/>
 
 
 
@@ -20,7 +22,7 @@ Discord Rich presence for [DaVinci Resolve](https://www.blackmagicdesign.com/pro
 
 [Requires .net 8.0](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
 
-[Download from releases](https://github.com/v4ish/DVResolve-RPC/releases/latest)
+[Download from releases](https://github.com/thebearodactyl/DVResolve-RPC/releases/latest)
 
     
 ## FAQ
@@ -36,7 +38,7 @@ Discord Rich presence for [DaVinci Resolve](https://www.blackmagicdesign.com/pro
 
 #### Discord server?
 
-[Discord](https://dsc.gg/v4ish)
+[Discord](https://discord.gg/g9FSPqezyB)
 
 ## Development
 ``` bash
